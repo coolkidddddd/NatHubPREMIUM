@@ -1,5 +1,5 @@
 local supportedGames = {}
-
+local scriptID = {}
 if premium then
     supportedGames = {
         [7436755782] = "https://api.luarmor.net/files/v4/loaders/483d639ad74a7814ff1057d68cec56c2.lua", -- Grow a Garden
@@ -9,6 +9,12 @@ if premium then
         [4777817887] = "https://api.luarmor.net/files/v4/loaders/d53370331c9ca16ce3479c3ac6ae5a78.lua", -- Bladeball
         [7095682825] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/beaks.lua", -- Beaks
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
+    }
+    scriptID = {
+        [7436755782] = "483d639ad74a7814ff1057d68cec56c2", -- Grow a Garden
+        [7018190066] = "d3a76114c1ea182127b88170b6043d11", -- Dead Rails
+        [6325068386] = "a0ad31cf58a8bd98dd82fa1fb648290f", -- BLR
+        [4777817887] = "d53370331c9ca16ce3479c3ac6ae5a78" -- BB
     }
 else
     supportedGames = {
@@ -20,18 +26,22 @@ else
         [7095682825] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/beaks.lua", -- Beaks
         [994732206] = "https://raw.githubusercontent.com/ArdyBotzz/NatHub/refs/heads/master/bf.lua" -- Blox Fruit
     }
+    scriptID = {
+        --[7436755782] = "65c66a87b33565a9dea1a54b798b6b2a", -- Grow a Garden
+        [7018190066] = "a3e99a8c1a465fc973e7aa0dda0e220c", -- Dead Rails
+        [6325068386] = "50ba70185011d66f3ed97e4e7f50bd11", -- BLR
+        [4777817887] = "6f48a7a95292a0885256d242900d81fb" -- BB
+    }
 end
-
 local gameNames = {
-    [5750914919] = "Fisch",
-    [7018190066] = "Dead Rails",
-    [6325068386] = "Blue Lock Rivals",
-    [4777817887] = "Blade Ball",
-    [7436755782] = "GaG",
-    [7095682825] = "Beaks",
+    [5750914919] = "Fisch", -- Fisch
+    [7018190066] = "Dead Rails", -- Dead Rails
+    [6325068386] = "Blue Lock Rivals", -- BLR
+    [4777817887] = "Blade Ball", -- Blade Ball
+    [7436755782] = "GaG", -- GaG
+    [7095682825] = "Beaks", -- Beaks
     [994732206] = "Blox Fruit"
 }
-
 local gameId = game.GameId
 if supportedGames[gameId] then
     game.StarterGui:SetCore(
@@ -43,7 +53,7 @@ if supportedGames[gameId] then
             Duration = 5
         }
     )
-
+    -- key system removed here
     local game_url = game:HttpGet(supportedGames[gameId])
     loadstring(game_url)()
 else
